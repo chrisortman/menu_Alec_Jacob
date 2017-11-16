@@ -2,32 +2,33 @@
 
 def crx(searched_stat):
     if searched_stat == "HP":
-        return(108)
+        return 108
     if searched_stat == "TQ":
-        return(84)
+        return 84
     if searched_stat == "weight":
-        return(2000)
+        return 2000 
 
 def silvia(searched_stat):
     if searched_stat == "HP":
-        return(135)
+        return 135 
     if searched_stat == "TQ":
-        return(152)
+        return 152
     if searched_stat == "weight":
-        return(2500)
+        return 2500 
 
 def eclipse(searched_stat):
     if searched_stat == "HP":
-        return(135)
+        return 135
     if searched_stat == "TQ":
-        return(110)
+        return 110
     if searched_stat == "weight":
-        return(2200)
+        return 2200
 
-def tuscon(searched_stat):
+def tucson(searched_stat):
     if searched_stat == "HP":
-        return(170)
+        return 170
     if searched_stat == "TQ":
-        return(178)
+        return 178
     if searched_stat == "weight":
-        return(3300)
+        return 3300
+        

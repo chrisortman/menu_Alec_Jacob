@@ -7,13 +7,14 @@ import stats
 searched_stat = 0
 car = 0
 def main():
-    global searched_stat
-    global car
+    searched_stat = 0
+    car = 0
     
     valid_search = False
-    while not valid_search:
-        while searched_stat != "quit":
-            
+    while searched_stat != "quit":
+        while not valid_search:
+            searched_stat = 0
+            car = 0
             print_stat_menu()
             try:
                 searched_stat = handle_stat_select()
@@ -22,12 +23,12 @@ def main():
                 valid_search = True
                 while car != "quit":
                     print_car_menu()
-                    car = handle_car_select()
-                    print("Do you want to continue?")
-                searched_stat = input("If You are done type\"quit\".\nIf you are not done press enter.")
-                go_again = input("Do you want to go again? (Y/N):   ")
-                if go_again == "N":
-                    searched_stat = "quit" 
+                    car = handle_car_select(searched_stat)
+                    
+                    go_again = input("Do you want to go again? (Y/N):   ")
+                    if go_again.lower == "n":
+                        searched_stat = "quit"
+                        valid_search = True
                 
                 
             except NameError:
@@ -73,8 +74,6 @@ def handle_stat_select():
             print("You chose, ",searched_stat)
             valid_number_1 = True
             return searched_stat
-        except NameError:
-            print("searched_stat wasnt allowed as a value")
         except ValueError:
             print("You fool thats not even a number")
             
@@ -82,11 +81,11 @@ def handle_stat_select():
         
     
 
-def handle_car_select():
+def handle_car_select(searched_stat):
     
     
-    valid_number_2 = False
-    while not valid_number_2:
+    valid_number_1 = False
+    while not valid_number_1:
         try:  
             car = int(input("enter number of car:   "))        
             
@@ -97,12 +96,12 @@ def handle_car_select():
             if car == 3:
                 print(searched_stat," = ",str(stats.eclipse(searched_stat)))    
             if car == 4:
-                print(searched_stat," = ",str(stats.silvia(searched_stat)))
+                print(searched_stat," = ",str(stats.tucson(searched_stat)))
             if car == 5:
                 car = "quit"
                 return car
             print("You pressed, ",car)
-            valid_number_2 = True
+            valid_number_1 = True
             return car
         except NameError:
             print("Your car choice was not allowed")
@@ -113,5 +112,4 @@ def handle_car_select():
 
 
 main()
-
 
