@@ -1,39 +1,57 @@
 import stats
 
-
-
-
+QUIT_CODE = 99
 
 searched_stat = 0
 car = 0
 def main():
-    searched_stat = 0
-    car = 0
-    
-    valid_search = False
-    while searched_stat != "quit":
-        while not valid_search:
-            searched_stat = 0
-            car = 0
-            print_stat_menu()
-            try:
-                searched_stat = handle_stat_select()
-                if searched_stat == "quit":
-                    quit()
-                valid_search = True
-                while car != "quit":
-                    print_car_menu()
-                    car = handle_car_select(searched_stat)
-                    
-                    go_again = input("Do you want to go again? (Y/N):   ")
-                    if go_again.lower == "n":
-                        searched_stat = "quit"
-                        valid_search = True
-                
-                
-            except NameError:
-                print("your input was inviable")
 
+    should_quit = False
+    while not should_quit:
+        print_stat_menu()
+        selected_stat = handle_stat_select()
+        if selected_stat == QUIT_CODE:
+            should_quit = True
+        else:
+            print_car_menu()
+            car = handle_car_select(searched_stat)
+            if car != QUIT_CODE:
+                go_again = input("Do you want to go again? (Y/N):   ")
+                if go_again.lower == "n":
+                    should_quit = True
+                else:
+                    pass
+            else:
+                #back to previous menu?
+                pass
+
+    # searched_stat = 0
+    # car = 0
+    #
+    # valid_search = False
+    # while searched_stat != "quit":
+    #     while not valid_search:
+    #         searched_stat = 0
+    #         car = 0
+    #         print_stat_menu()
+    #         try:
+    #             searched_stat = handle_stat_select()
+    #             if searched_stat == "quit":
+    #                 quit()
+    #             valid_search = True
+    #             while car != "quit":
+    #                 print_car_menu()
+    #                 car = handle_car_select(searched_stat)
+    #                 
+    #                 go_again = input("Do you want to go again? (Y/N):   ")
+    #                 if go_again.lower == "n":
+    #                     searched_stat = "quit"
+    #                     valid_search = True
+    #             
+    #             
+    #         except NameError:
+    #             print("your input was inviable")
+    #
 
 
 
@@ -70,7 +88,7 @@ def handle_stat_select():
             elif searched_stat == 3:
                 searched_stat = "weight" 
             elif searched_stat == 4:
-                searched_stat = "quit"
+                searched_stat = QUIT_CODE
             print("You chose, ",searched_stat)
             valid_number_1 = True
             return searched_stat
@@ -99,7 +117,7 @@ def handle_car_select(searched_stat):
                 print(searched_stat," = ",str(stats.tucson(searched_stat)))
             if car == 5:
                 car = "quit"
-                return car
+                return QUIT_CODE
             print("You pressed, ",car)
             valid_number_1 = True
             return car
